@@ -1,0 +1,140 @@
+$color-start: #000000;
+$color-light: #ffffff;
+$color-main: #ff6d70;
+$color-bg: #ed494c;
+@mixin pad {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+* {
+    font-family: "Roboto Condensed", sans-serif;
+}
+.start-bg,
+.record-bg {
+    background-color: $color-start;
+    min-height: 100vh;
+}
+
+.game-bg {
+    background-color: $color-main;
+    min-height: 100vh;
+}
+.board {
+    font-size: 50px;
+    @include pad {
+        font-size: 100px;
+    }
+}
+
+.text-main {
+    color: $color-main;
+}
+.bg-bg {
+    background-color: $color-bg;
+}
+.text-bg {
+    color: $color-bg;
+}
+.text-main-hollow {
+    text-shadow: 2px 2px $color-main, -2px -2px $color-main, 2px -2px $color-main, -2px 2px $color-main;
+}
+.text-light-hollow {
+    text-shadow: 2px 2px $color-light, -2px -2px $color-light, 2px -2px $color-light, -2px 2px $color-light;
+}
+
+.btn-main {
+    font-size: 24px;
+    @include pad {
+        font-size: 48px;
+    }
+}
+.btn-game {
+    &:hover,
+    &:focus {
+        background-color: darken($color-bg, 10%);
+    }
+}
+.scale1 {
+    animation: zoom 2s alternate infinite ease-in;
+}
+.scale2 {
+    animation: zoom 3s alternate infinite ease-in;
+}
+.scale3 {
+    animation: zoom 0.5s ease-out;
+}
+@keyframes zoom {
+    0% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+.player {
+    border: 3px solid $color-start;
+}
+.vs {
+    margin-top: -10px;
+}
+.score {
+    font-size: 24px;
+}
+.hr-line {
+    border-bottom: 5px solid $color-bg;
+}
+.v-line {
+    border-right: 5px solid $color-bg;
+}
+.win-box {
+    position: relative;
+    .winner {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        font-size: 77px;
+        line-height: 1;
+        z-index: 3;
+        @include pad() {
+            font-size: 154px;
+        }
+    }
+
+    .bg-win {
+        font-size: 24px;
+        color: $color-bg;
+        z-index: 1;
+    }
+    .bg-draw {
+        @include pad {
+            min-height: 450px;
+        }
+    }
+}
+.history-title {
+    position: relative;
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: $color-bg;
+        height: 5px;
+        width: 10%;
+    }
+    &::before {
+        left: 15%;
+    }
+    &::after {
+        right: 15%;
+    }
+}
+.history-content {
+    min-height: 200px;
+    @include pad() {
+        min-height: 400px;
+    }
+}

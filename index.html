@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8F井字遊戲</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div class="start-bg">
+        <div class="container">
+            <div class="row justify-content-center pt-5 pb-4">
+                <div class="col-lg-8 col-md-10">
+                    <div class="row board">
+                        <div class="col-4 text-white text-center">TIC</div>
+                        <div class="col-4 text-center text-bg scale1">◯</div>
+                        <div class="col-4 text-center text-light-hollow scale2">✘</div>
+                        <div class="col-4 text-center text-bg scale1">✘</div>
+                        <div class="col-4 text-white text-center">TAC</div>
+                        <div class="col-4 text-center text-main-hollow scale2">◯</div>
+                        <div class="col-4 text-center text-main-hollow scale2">◯</div>
+                        <div class="col-4 text-center text-bg scale1">✘</div>
+                        <div class="col-4 text-white text-center">TOE</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center pb-2">
+                <div class="col-lg-8 col-md-10">
+                    <button class="btn w-100 btn-light text-main btn-lg btn-main js-btn-start">START</button>
+                </div>
+            </div>
+            <div class="row justify-content-center pb-2">
+                <div class="col-lg-8 col-md-10">
+                    <button class="btn w-100 bg-bg btn-game text-white btn-lg btn-main js-record">RECORDS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="game-bg game d-none">
+        <div class="container">
+            <div class="row justify-content-center pt-5 pb-4">
+                <div class="col-lg-8 col-md-10">
+                    <div class="row pb-3 justify-content-center">
+                        <div class="col-2 col-sm-1 text-center player rounded text-white bg-bg py-2">✖
+                        </div>
+                        <div
+                            class="col-3 col-sm-4 justify-content-center score js-scoreX bg-white text-dark d-flex align-items-center">
+                            10
+                        </div>
+                        <div class="col-2  col-sm-1 text-center text-white bg-dark pb-2 pt-3 rounded vs">VS
+                        </div>
+                        <div
+                            class="col-3 col-sm-4 justify-content-center score js-scoreO bg-white text-dark d-flex align-items-center">
+                            8
+                        </div>
+                        <div class="col-2 col-sm-1 text-center  player rounded text-white bg-dark py-2">◯</div>
+                    </div>
+                    <div class="row text-white">
+                        <div class="col-12 js-turn text-end">
+                            YOUR TURN!
+                        </div>
+                    </div>
+                    <div class="board">
+                        <div class="row hr-line">
+                            <div class="col-4 text-center v-line"><span class="invisible d-block">0</span></div>
+                            <div class="col-4 text-center  v-line"><span class="invisible d-block">1</span></div>
+                            <div class="col-4 text-center "><span class="invisible d-block">2</span></div>
+                        </div>
+                        <div class="row hr-line">
+                            <div class="col-4 text-center v-line"><span class="invisible d-block">3</span></div>
+                            <div class="col-4  text-center v-line"><span class="invisible d-block">4</span></div>
+                            <div class="col-4 text-center"><span class="invisible d-block">5</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-center v-line"><span class="invisible d-block">6</span></div>
+                            <div class="col-4 text-center v-line"><span class="invisible d-block">7</span></div>
+                            <div class="col-4 text-center"><span class="invisible d-block">8</span></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center pb-2">
+                <div class="col-lg-8 col-md-10">
+                    <button class="btn w-100 bg-bg btn-game text-white btn-lg btn-main js-restart">RESTART</button>
+                </div>
+            </div>
+            <div class="row justify-content-center pb-2">
+                <div class="col-lg-8 col-md-10">
+                    <button class="btn w-100 btn-light text-main btn-lg btn-main js-index">BACK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="OWin-bg result game-bg d-none">
+        <div class="container">
+            <div class="row justify-content-center pt-5 pb-4">
+                <div class="col-lg-8 col-md-10">
+                    <div class="row pb-3 justify-content-center">
+                        <div class="col-2 col-sm-1 text-center player rounded text-white bg-bg py-2">✖
+                        </div>
+                        <div
+                            class="col-3 col-sm-4 justify-content-center score js-scoreX bg-white text-dark d-flex align-items-center">
+
+                        </div>
+                        <div class="col-2  col-sm-1 text-center text-white bg-dark pb-2 pt-3 rounded vs">VS
+                        </div>
+                        <div
+                            class="col-3 col-sm-4 justify-content-center score js-scoreO bg-white text-dark d-flex align-items-center">
+
+                        </div>
+                        <div class="col-2 col-sm-1 text-center  player rounded text-white bg-dark py-2">◯</div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center win-box">
+
+                        <div>
+                            <p class="bg-win"><i class="far fa-circle fa-10x"></i></p>
+                            <p class="text-light-hollow text-main winner mb-0">WINNER!</p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center pb-2">
+                        <div class="col-lg-8 col-md-10">
+                            <button
+                                class="btn w-100 bg-bg btn-game text-white btn-lg btn-main js-result-restart">RESTART</button>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center pb-2">
+                        <div class="col-lg-8 col-md-10">
+                            <button class="btn w-100 btn-light text-main btn-lg btn-main js-save">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="XWin-bg result game-bg d-none">
+        <div class="container">
+            <div class="row justify-content-center pt-5 pb-4">
+                <div class="col-lg-8 col-md-10">
+                    <div class="row pb-3 justify-content-center">
+                        <div class="col-2 col-sm-1 text-center player rounded text-white bg-bg py-2">✖
+                        </div>
+                        <div
+                            class="col-3 col-sm-4 justify-content-center score js-scoreX bg-white text-dark d-flex align-items-center">
+
+                        </div>
+                        <div class="col-2  col-sm-1 text-center text-white bg-dark pb-2 pt-3 rounded vs">VS
+                        </div>
+                        <div
+                            class="col-3 col-sm-4 justify-content-center score js-scoreO bg-white text-dark d-flex align-items-center">
+
+                        </div>
+                        <div class="col-2 col-sm-1 text-center  player rounded text-white bg-dark py-2">◯</div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center win-box">
+                        <div>
+                            <p class="bg-win"><i class="fas fa-times fa-10x"></i></p>
+                            <p class="text-light-hollow text-main winner mb-0">WINNER!</p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center pb-2">
+                        <div class="col-lg-8 col-md-10">
+                            <button
+                                class="btn w-100 bg-bg btn-game text-white btn-lg btn-main js-result-restart">RESTART</button>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center pb-2">
+                        <div class="col-lg-8 col-md-10">
+                            <button class="btn w-100 btn-light text-main btn-lg btn-main js-save">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="draw-bg result game-bg d-none">
+        <div class="container">
+            <div class="row justify-content-center pt-5 pb-4">
+                <div class="col-lg-8 col-md-10">
+                    <div class="row pb-3 justify-content-center">
+                        <div class="col-2 col-sm-1 text-center player rounded text-white bg-bg py-2">✖
+                        </div>
+                        <div
+                            class="col-3 col-sm-4 justify-content-center score js-scoreX bg-white text-dark d-flex align-items-center">
+
+                        </div>
+                        <div class="col-2  col-sm-1 text-center text-white bg-dark pb-2 pt-3 rounded vs">VS
+                        </div>
+                        <div
+                            class="col-3 col-sm-4 justify-content-center score js-scoreO bg-white text-dark d-flex align-items-center">
+
+                        </div>
+                        <div class="col-2 col-sm-1 text-center  player rounded text-white bg-dark py-2">◯</div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center win-box">
+
+                        <div>
+                            <p class="bg-win bg-draw d-flex align-items-center">
+                                <i class="far fa-circle fa-8x"></i>
+                                <i class="fas fa-times fa-10x"></i>
+                            </p>
+                            <p class="text-light-hollow text-main winner mb-0">DRAW!
+                                <br>DRAW!<br>DRAW!
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="row justify-content-center pb-2">
+                        <div class="col-lg-8 col-md-10">
+                            <button
+                                class="btn w-100 bg-bg btn-game text-white btn-lg btn-main js-result-restart">RESTART</button>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center pb-2">
+                        <div class="col-lg-8 col-md-10">
+                            <button class="btn w-100 btn-light text-main btn-lg btn-main js-save">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="records d-none record-bg">
+        <div class="container">
+            <div class="row justify-content-center pt-5 pb-4">
+                <div class="col-lg-8 col-md-10">
+                    <div class="history-title display-1 text-center text-main">Ranking</div>
+                    <div class="history-content row py-5 text-center  text-white">
+
+                    </div>
+                </div>
+                <div class="row justify-content-center pb-2">
+                    <div class="col-lg-8 col-md-10">
+                        <button class="btn w-100 bg-bg btn-game text-white btn-lg btn-main js-back">BACK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade " id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bg text-white">
+                    <h5 class="modal-title " id="userModalLabel">Enter your name</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text " id="">Player ◯</span>
+                        </div>
+                        <input type="text" class="form-control js-playerO">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="">Player &nbsp;✖</span>
+                        </div>
+                        <input type="text" class="form-control js-playerX">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger bg-bg js-btn-save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script src="all.js"></script>
+</body>
+
+</html>
