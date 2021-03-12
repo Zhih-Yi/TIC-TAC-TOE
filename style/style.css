@@ -172,6 +172,7 @@
 
 .history-content {
   min-height: 200px;
+  font-size: 20px;
 }
 
 @media (min-width: 768px) {

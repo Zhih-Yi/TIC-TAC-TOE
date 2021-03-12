@@ -134,6 +134,7 @@ $color-bg: #ed494c;
 }
 .history-content {
     min-height: 200px;
+    font-size: 24px;
     @include pad() {
         min-height: 400px;
     }

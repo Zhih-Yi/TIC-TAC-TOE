@@ -75,17 +75,17 @@ window.onload = function () {
         for (let i = 0; i < scoreArrlen; i++) {
             if (i === 10) { break; }
             if (i === 0) {
-                rankingStr += `<div class="col-sm-4 col-6"><i class="fas fa-crown text-warning me-2"></i>${i + 1}. ${scoreArr[i]?.Name}</div>
-                         <div class="col-sm-4 col-6">${scoreArr[i]?.score > 0 ? scoreArr[i]?.score : 0}</div>
-                         <div class="col-sm-4 d-none d-sm-block">${scoreArr[i]?.Time}</div>`;
+                rankingStr += `<div class="col-md-4 col-6"><i class="fas fa-crown text-warning me-2"></i>${i + 1}. ${scoreArr[i]?.Name}</div>
+                         <div class="col-md-4 col-6">${scoreArr[i]?.score > 0 ? scoreArr[i]?.score : 0}</div>
+                         <div class="col-md-4 d-none d-md-block text-end">${scoreArr[i]?.Time}</div>`;
             } else if (i < 3 && i !== 0) {
-                rankingStr += `<div class="col-sm-4 col-6"><i class="fas fa-medal text-success me-2"></i>${i + 1}. ${scoreArr[i]?.Name}</div>
-                         <div class="col-sm-4 col-6">${scoreArr[i]?.score > 0 ? scoreArr[i]?.score : 0}</div>
-                         <div class="col-sm-4 d-none d-sm-block">${scoreArr[i]?.Time}</div>`;
+                rankingStr += `<div class="col-md-4 col-6"><i class="fas fa-medal text-success me-2"></i>${i + 1}. ${scoreArr[i]?.Name}</div>
+                         <div class="col-md-4 col-6">${scoreArr[i]?.score > 0 ? scoreArr[i]?.score : 0}</div>
+                         <div class="col-md-4 d-none d-md-block text-end">${scoreArr[i]?.Time}</div>`;
             } else {
-                rankingStr += `<div class="col-sm-4 col-6"><i class="me-4"></i>${i + 1}. ${scoreArr[i]?.Name}</div>
-                         <div class="col-sm-4 col-6">${scoreArr[i]?.score > 0 ? scoreArr[i]?.score : 0}</div>
-                         <div class="col-sm-4 d-none d-sm-block">${scoreArr[i]?.Time}</div>`;
+                rankingStr += `<div class="col-md-4 col-6"><i class="me-4"></i>${i + 1}. ${scoreArr[i]?.Name}</div>
+                         <div class="col-md-4 col-6">${scoreArr[i]?.score > 0 ? scoreArr[i]?.score : 0}</div>
+                         <div class="col-md-4 d-none d-md-block text-end">${scoreArr[i]?.Time}</div>`;
             }
 
         }
@@ -195,8 +195,6 @@ function checkGame() {
                 if (num1 !== -1 && num2 !== -1 && num3 !== -1) {
                     //算分數
                     circleScore += 1;
-                    circleArr = [];
-
                     //畫面
                     let scoreBoxY = document.querySelectorAll('.js-scoreO');
                     scoreBoxY.forEach((value) => {
@@ -209,20 +207,16 @@ function checkGame() {
                     }, 800)
 
 
-                } else {
-                    //平手
-                    if (circleArr.length + crossArr.length === 9) {
-                        setTimeout(function () {
-                            document.querySelector('.draw-bg').classList.remove('d-none');
-                            document.querySelector('.game-bg').classList.add('d-none')
-                        }, 800);
+                } else if (circleArr.length + crossArr.length === 9 && (num1 == -1 || num2 == -1 || num3 == -1)) {
 
-                        circleArr = [];
-                        crossArr = [];
+                    setTimeout(function () {
+                        document.querySelector('.draw-bg').classList.remove('d-none');
+                        document.querySelector('.game-bg').classList.add('d-none')
+                    }, 800);
 
-
-                    }
                 }
+
+
 
 
             }
@@ -231,11 +225,11 @@ function checkGame() {
                 num1 = crossArr.indexOf(a);
                 num2 = crossArr.indexOf(b);
                 num3 = crossArr.indexOf(c);
+
                 if (num1 !== -1 && num2 !== -1 && num3 !== -1) {
                     //算分數
 
                     crossScore += 1;
-                    crossArr = [];
 
                     //畫面
                     let scoreBoxX = document.querySelectorAll('.js-scoreX');
@@ -248,19 +242,12 @@ function checkGame() {
                     }, 800);
 
 
-                } else {
-                    //平手
-                    if (circleArr.length + crossArr.length === 9) {
-                        setTimeout(function () {
-                            document.querySelector('.draw-bg').classList.remove('d-none');
-                            document.querySelector('.game-bg').classList.add('d-none')
-                        }, 800);
+                } else if (circleArr.length + crossArr.length === 9 && (num1 == -1 || num2 == -1 || num3 == -1)) {
+                    setTimeout(function () {
+                        document.querySelector('.draw-bg').classList.remove('d-none');
+                        document.querySelector('.game-bg').classList.add('d-none')
+                    }, 800);
 
-                        circleArr = [];
-                        crossArr = [];
-
-
-                    }
                 }
             }
         });
